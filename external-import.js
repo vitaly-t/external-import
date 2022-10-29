@@ -17,8 +17,8 @@ function load(input) {
     const url = t ? input : input.url;
     const exp = (!t && input.exports) || 'exports';
     return fetch(url).then(code => {
-        eval(code); // evaluate the code
-        return eval(exp); // evaluate the exports
+        return eval(`(function hello(){eval(${code})})()`); // evaluate the code
+        // return eval(exp); // evaluate the exports
     });
 }
 
